@@ -6,7 +6,7 @@ const LatestJobs = () => {
   return (
     <div className='max-w-7xl mx-auto my-20'>
       <h1 className='text-4xl font-bold'>
-        <span className='bg-[#406ec9]'>Latest & Top </span> Job Openings
+        <span className='bg-[#517ace]'>Latest & Top </span> Job Openings
       </h1>
       <div className="grid grid-cols-5 gap-4 my-5">
         {randomJobs.slice(0,9).map((item, index) => (

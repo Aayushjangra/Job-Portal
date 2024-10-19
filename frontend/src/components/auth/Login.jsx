@@ -8,6 +8,10 @@ import { useState } from "react";
 import { USER_API_END_POINT } from '@/utils/constant'
 import axios from "axios";
 import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/authSlice";
+
+
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -17,6 +21,8 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -25,6 +31,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try{
+      
       const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
         headers: { 'Content-Type': "application/json" },
         withCredentials: true,
@@ -32,6 +39,7 @@ const Login = () => {
         
     });
       if(res.data.success){
+        dispatch(setUser(res.data.user));
         navigate('/')
         toast.success(res.data.message);
         
@@ -41,7 +49,7 @@ const Login = () => {
 
     }catch(error){
       console.log(error);
-      toast.error(error.response.data.message);
+      
       
     }
 
@@ -104,6 +112,8 @@ const Login = () => {
               </div>
             </RadioGroup>
           </div>
+
+          
           <Button type="submit" className="w-full my-4">
             Login
           </Button>
