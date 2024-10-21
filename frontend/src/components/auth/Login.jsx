@@ -4,22 +4,26 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { RadioGroup } from "../ui/radio-group";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { USER_API_END_POINT } from '@/utils/constant'
 import axios from "axios";
 import { toast } from "sonner";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/authSlice";
+import { Loader2 } from "lucide-react";
+import { setLoading } from '@/redux/authSlice'
 
 
 
 const Login = () => {
+  
   const [input, setInput] = useState({
     email: "",
     password: "",
     role: "",
   });
 
+  const { loading , user} = useSelector(store => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -51,9 +55,16 @@ const Login = () => {
       console.log(error);
       
       
-    }
+    }finally {
+      dispatch(setLoading(false));
+  }
 
   }
+  useEffect(()=>{
+    if(user){
+        navigate("/");
+    }
+},[])
 
   return (
     <div>
@@ -112,11 +123,12 @@ const Login = () => {
               </div>
             </RadioGroup>
           </div>
+          {
+            loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Login</Button>
+        }
 
           
-          <Button type="submit" className="w-full my-4">
-            Login
-          </Button>
+          
           <span className="text-sm">
             Do not have an account?{" "}
             <Link to="/signup" className="text-blue-600">
