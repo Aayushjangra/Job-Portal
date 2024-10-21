@@ -66,7 +66,7 @@ const Navbar = () => {
             Job<span className="text-[#406ec9]">Portal</span>
           </h1>
         </div>
-        <div className="flex items-center gap-12">
+        <div className="flex items-center gap-12 ">
           <ul className="flex font-medium items-center gap-5">
             {user && user.role === "recruiter" ? (
               <>
@@ -116,7 +116,7 @@ const Navbar = () => {
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent className="w-80">
-                <div className="">
+                <div >
                   <Avatar className="cursor-pointer">
                     <AvatarImage
                       src={user?.profile?.profilePhoto}
@@ -130,7 +130,7 @@ const Navbar = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col my-2 text-gray-600">
+                <div className="flex flex-col my-2 text-gray-600 ">
                   {user && user.role === "student" && (
                      <div className='flex w-fit items-center gap-2 cursor-pointer'>
                       <User2 />
