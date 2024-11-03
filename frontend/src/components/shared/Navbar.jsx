@@ -85,9 +85,6 @@ const Navbar = () => {
                 <li>
                   <Link to="/jobs">Jobs</Link>
                 </li>
-                <li>
-                  <Link to="/browse">Browse</Link>
-                </li>
               </>
             )}
           </ul>
@@ -116,7 +113,7 @@ const Navbar = () => {
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent className="w-80">
-                <div >
+                <div>
                   <Avatar className="cursor-pointer">
                     <AvatarImage
                       src={user?.profile?.profilePhoto}
@@ -132,7 +129,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex flex-col my-2 text-gray-600 ">
                   {user && user.role === "student" && (
-                     <div className='flex w-fit items-center gap-2 cursor-pointer'>
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <User2 />
                       <Button variant="link">
                         {" "}
@@ -157,3 +154,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
